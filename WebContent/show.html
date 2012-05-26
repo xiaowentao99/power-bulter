@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>策略查看</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+$(function () {
+        Highcharts.setOptions({
+            global: {
+                useUTC: true
+            }
+        });
+		alert("works");
+		 setInterval(function() {
+		 alert("works");
+							$.getJSON("realtimedata.jsp", function(data){
+								//alert(data.time+" "+data.value);
+								//var x = (new Date()).getTime(), // current time
+                               // y =data.value;
+							   $.each(rtd,function(k,v){
+							   		alert(k);
+							   });
+                           	 	series.addPoint([x, y], true, true);});
+                        }, 1000);
+    
+       /* var chart1;
+        chart1 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                type: 'pie',
+                marginRight: 10,
+                events: {
+                    load: function() {
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        setInterval(function() {
+							$.getJSON("test.php", function(data){
+								//alert(data.time+" "+data.value);
+								var x = (new Date()).getTime(), // current time
+                                y =data.value;
+                           	 	series.addPoint([x, y], true, true);});
+                        }, 2000);
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: '实时能耗曲线'
+                },
+				style:{
+				    width:'200px',
+				},
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+			
+			  plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, 'rgba(2,0,0,0)']
+                        ]
+                    },
+                    lineWidth: 1,
+                    marker: {
+                        enabled: false,
+						
+                        states: {
+                            hover: {
+                                enabled: true,
+                                radius: 5
+                            }
+                        }
+                    },
+                    shadow: false,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    }
+                }
+            },
+            series: [{
+				type: 'line',
+            
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+    
+                    for (i = -360; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: Math.random()*100
+                        });
+                    }
+                    return data;
+                })()
+            }]
+        });*/
+		
+		
+		
+		/* var chart2;
+        chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'temperature',
+                type: 'line',
+                marginRight: 10,
+                events: {
+                    load: function() {
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        setInterval(function() {
+							$.getJSON("realtimedata.jsp", function(data){
+								//alert(data.time+" "+data.value);
+								//var x = (new Date()).getTime(), // current time
+                               // y =data.value;
+							   $.each(rtd,function(k,v){
+							   		alert(k);
+							   });
+                           	 	series.addPoint([x, y], true, true);});
+                        }, 10000);
+                    }
+                }
+            },
+            title: {
+               text: ''
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: '实时温度曲线'
+                },
+				style:{
+				    width:'200px',
+				},
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+			
+			  plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, 'rgba(2,0,0,0)']
+                        ]
+                    },
+                    lineWidth: 1,
+                    marker: {
+                        enabled: false,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                radius: 5
+                            }
+                        }
+                    },
+                    shadow: false,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    }
+                }
+            },
+            series: [{
+				type: 'line',
+                name: 'Random data',
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+    
+                    for (i = -360; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: Math.random()*100
+                        });
+                    }
+                    return data;
+                })()
+            }]
+        });
+    });*/
+
+/*function startTimerAjax(){
+	$.getJSON("test.php",function(data){
+		});
+	}*/
+
+</script>
+<style>
+html,body,div,h1,ul,li,a{ padding:0px; margin:0px; font-size:12px;}
+ul{ list-style:none;}
+a{ text-decoration:none; color:#000;}
+.block{
+		width:980px; 
+		margin:0 auto;
+		background:#5c9dff;
+		-moz-border-radius:50px;
+	    -webkit-border-radius:50px;
+		border-radius:50px;
+		padding-bottom:2px;
+		}
+h1{
+	font-weight:normal;
+	font-size:20px;
+	padding:10px 0px 10px 30px;
+	}
+
+.nav{
+	width:900px;
+	margin:0 auto;
+	-moz-border-radius:50px 50px 0 0;
+	-webkit-border-radius:50px 50px 0 0;
+	border-radius:50px 50px 0 0;
+	background:#fe962c;
+	height:31px;
+	}
+.nav li{ float:left;}
+.nav li a{ display:block; float:left; width:90px; text-align:center; height:23px; line-height:23px; color:#000; margin-top:4px; background:#fff; margin-left:20px; -moz-border-color:#000;
+	-moz-border-radius:50px;
+	-webkit-border-radius:50px;
+	border-radius:50px;
+	-moz-box-shadow:1px 1px 1px #6a5e51;
+	-webkit-border-shadow:1px 1px 1px #6a5e51;
+	}
+.nav li a.on{
+	background:#abb3e4;
+	}
+.nav li a:hover{
+	background:#abb3e4;
+	}
+.content{
+	width:900px;
+	margin:0 auto;
+	-moz-border-radius:0 0 50px 50px;
+	-webkit-border-radius:0 0 50px 50px;
+	border-radius:0 0 50px 50px;
+	background:#e8e8e8;
+	
+	}
+.content_left{
+	width:195px;
+	float:left;
+	padding-bottom:50px;
+	}
+.leftblock{
+	width:150px;
+	margin:10px auto;
+	background:#6396c0;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	-moz-box-shadow:1px 1px 1px #6a5e51;
+	-webkit-border-shadow:1px 1px 1px #6a5e51;
+	}
+.leftblock li{
+	padding-top:10px;
+	}
+.leftblock li a,.makepic{
+	 width:120px; margin:0px auto; text-align:center; height:23px; line-height:23px;
+	 background:#fff;
+	display:block;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	-moz-box-shadow:2px 2px 1px #6a5e51;
+	-webkit-border-shadow:2px 2px 1px #6a5e51;
+	}
+.leftblock li a:hover{ color:#F60;background:#ffff32;}
+.leftblock li a.current{ background:#ffff32;}
+.leftblock:nth-child(1){ padding-bottom:20px;}
+.leftblock .row:last-child{ padding-bottom:106px;}
+.t{ padding:15px;}
+.row{ height:23px; margin:5px 0px; padding-left:15px;}
+.row input,.row label{ float:left;}
+.row input{ padding:5px;}
+.row label{ display: block; background:#fff; border:1px solid #666; width:70px; text-align:center; height:20px; line-height:20px; cursor:pointer;}
+.makepic{ border:1px solid #d3e3da;-moz-box-shadow:none;
+	-webkit-border-shadow:none;}
+.makepic:hover{color:#F60;}
+
+.content_right{ float:left; border:1px solid #add863;
+		-moz-border-radius:0 150px 0 150px;
+	    -webkit-border-radius:0 150px 0 150px;
+	     border-radius:0 150px 0 150px;
+		 margin-top:10px;
+		 width:680px;
+		}
+.content_right:after{ clear:both; content:"."; height:0px; display:block;}
+.clear{ height:0px; clear:both;}
+</style>
+</head>
+
+<body>
+<div class="block">
+	<h1>智能管家V1.0</h1>
+    <ul class="nav">
+        	<li><a href="#" >策略查看</a></li>
+            <li><a href="#" class="on">实时数据</a></li>
+            <li><a href="#">EB评估</a></li>
+            <li><a href="#">历史数据</a></li>
+            <li><a href="#">新器件集成</a></li>
+            <li><a href="#">用户设置</a></li>
+            <li><a href="#">系统信息</a></li>
+     </ul>
+    <div class="content">
+    	<div class="content_left">
+        	<ul class="leftblock">
+            	<li><a id="allview" class="current" href="#">总体视图</a></li>
+                <li><a id="oneview" href="#">分类视图</a></li>
+            </ul>
+            <div class="leftblock">
+            	<div class="t">请选择电器</div>
+               	<div class="row"> <input type="checkbox" id="xyj"> <label for="xyj">洗衣机</label></div>
+                <div class="row"> <input type="checkbox" id="dbx"> <label for="dbx">电冰箱</label></div>
+                <div class="row"> <input type="checkbox" id="zld"> <label for="zld">走廊灯</label></div>
+                <div class="row"> <input type="checkbox" id="zykt"> <label for="zykt">中央空调</label></div>
+            	
+            </div>
+            <a href="#" class="makepic">生成图像</a>
+        </div>
+        <div class="content_right">
+        	<div class="t">所选电器实时状态控制</div>
+		
+
+			<div id="container" style="width: 600px; height: 130px; margin: 10px auto"></div>
+			<!--<div id="temperature" style="width: 600px; height: 130px; margin: 10px auto 60px"></div>-->
+        </div>
+		<div class="clear"></div>
+    </div>
+</div>
+</body>
+	<script src="js/highcharts.js"></script>
+
+</html>
